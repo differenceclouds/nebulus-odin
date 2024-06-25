@@ -55,7 +55,7 @@ main :: proc() {
 			for i:f32 = 0; i < (f32)(sections); i+=1 {
 				x:f32 = math.sin_f32((i * section_angle + m_pos) * PI_RADIANS) * (radius + 64)
 				y:f32 = math.cos_f32((i * section_angle + m_pos) * PI_RADIANS) * (radius + 64)
-				rl.DrawLineV({x + 400, y}, {x + 400, y + 400}, rl.RED)
+				rl.DrawLineV({x + 400, y + 200}, {x + 400, y + 400}, rl.RED)
 			}
 		}
 		rl.EndDrawing()
