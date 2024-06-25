@@ -30,10 +30,9 @@ main :: proc() {
 	defer rl.CloseWindow()
 
 
+	tower := Tower{radius=328, levels = 30, sections = 32}
 
-	tower := Tower{radius=328, levels=30, sections=32}
-
-	section_angle:f32= 360.0 / (f32)(tower.sections)
+	section_angle:f32 = 360.0 / (f32)(tower.sections)
 
 
 
@@ -45,6 +44,9 @@ main :: proc() {
 			window.height = rl.GetScreenHeight()
 		}
 
+		centerh:f32 = (f32)(window.width / 2)
+		centerv:f32 = (f32)(window.height / 2)
+
 		m_pos := (rl.GetMousePosition()[0] / f32(window.width)) * 150
 
 		rl.BeginDrawing()
@@ -53,9 +55,9 @@ main :: proc() {
 
 			using tower
 			for i:f32 = 0; i < (f32)(sections); i+=1 {
-				x:f32 = math.sin_f32((i * section_angle + m_pos) * PI_RADIANS) * (radius + 64)
-				y:f32 = math.cos_f32((i * section_angle + m_pos) * PI_RADIANS) * (radius + 64)
-				rl.DrawLineV({x + 400, y + 200}, {x + 400, y + 400}, rl.RED)
+				x:f32 = math.sin_f32((i * section_angle + m_pos) * PI_RADIANS) * (radius)
+				y:f32 = math.cos_f32((i * section_angle + m_pos) * PI_RADIANS) * (radius * 0.25)
+				rl.DrawLineV({x + centerh, y + centerv - 200}, {x + centerh, y + centerv + 200}, rl.RED)
 			}
 		}
 		rl.EndDrawing()
